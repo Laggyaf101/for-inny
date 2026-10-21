@@ -1,0 +1,1287 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#fbf5ef">
+  <title>For Inny, Wherever You Are ♡</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap');
+
+    :root {
+      --cream: #fbf5ef;
+      --paper: #fffdf9;
+      --pink: #f3d8d9;
+      --rose: #bd6677;
+      --red: #813b4c;
+      --ink: #49353a;
+      --muted: #8e797a;
+      --line: #eadbd3;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 85px;
+    }
+
+    body {
+      margin: 0;
+      background: var(--cream);
+      color: var(--ink);
+      font-family: 'DM Sans', sans-serif;
+      line-height: 1.7;
+    }
+
+    button, a { -webkit-tap-highlight-color: transparent; }
+
+    button { font: inherit; }
+
+    a { color: inherit; }
+
+    .serif {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-weight: 400;
+    }
+
+    .eyebrow {
+      color: var(--rose);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .center { text-align: center; }
+
+    .section {
+      padding: 100px 22px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .section-heading {
+      max-width: 600px;
+      margin: 0 auto 42px;
+      text-align: center;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(32px, 5vw, 49px);
+      line-height: 1.2;
+      margin: 12px 0;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 13px 23px;
+      background: var(--red);
+      color: white;
+      border: 1px solid var(--red);
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform .2s, background .2s;
+    }
+
+    .button:hover {
+      background: #693040;
+      transform: translateY(-2px);
+    }
+
+    .button-outline {
+      color: var(--red);
+      background: transparent;
+    }
+
+    .button-outline:hover {
+      color: white;
+    }
+
+    /* Welcome screen */
+
+    #welcome {
+      position: fixed;
+      inset: 0;
+      z-index: 20;
+      display: grid;
+      place-items: center;
+      overflow-y: auto;
+      padding: 24px;
+      background:
+        radial-gradient(ellipse at 10% 15%, #f5dfe0 0, transparent 40%),
+        radial-gradient(ellipse at 90% 85%, #f0dfd1 0, transparent 38%),
+        var(--cream);
+      transition: opacity .7s, visibility .7s;
+    }
+
+    #welcome.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .welcome-card {
+      width: min(100%, 570px);
+      padding: clamp(28px, 7vw, 65px) 20px;
+      text-align: center;
+      animation: arrive 1s both;
+    }
+
+    .tiny-heart {
+      color: var(--rose);
+      font-size: 30px;
+      margin-bottom: 18px;
+      animation: heartbeat 2s infinite;
+    }
+
+    .welcome-card h1 {
+      font-size: clamp(42px, 9vw, 76px);
+      line-height: 1.08;
+      margin: 20px 0;
+      letter-spacing: -2px;
+    }
+
+    .welcome-card h1 em {
+      color: var(--red);
+      font-weight: 400;
+    }
+
+    .welcome-card p {
+      color: var(--muted);
+      max-width: 340px;
+      margin: 0 auto 28px;
+      font-size: 14px;
+    }
+
+    .welcome-note {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-style: italic;
+      font-size: 13px;
+      color: var(--rose);
+      margin-top: 24px;
+    }
+
+    /* Navigation */
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 13px clamp(16px, 5vw, 55px);
+      background: rgba(251, 245, 239, .94);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(12px);
+    }
+
+    .brand {
+      font-family: 'Playfair Display', Georgia, serif;
+      color: var(--red);
+      text-decoration: none;
+      font-size: 20px;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav-links a {
+      font-size: 11px;
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .nav-links a:hover { color: var(--red); }
+
+    /* Main hero */
+
+    .hero {
+      min-height: 70vh;
+      display: grid;
+      place-items: center;
+      padding: 90px 22px;
+      background:
+        radial-gradient(ellipse at 50% 0%, #f4dfe0, transparent 65%);
+    }
+
+    .hero-inner {
+      max-width: 690px;
+      text-align: center;
+    }
+
+    .hero h2 {
+      font-size: clamp(38px, 7vw, 68px);
+      line-height: 1.13;
+      margin: 18px 0;
+    }
+
+    .hero h2 em { color: var(--red); }
+
+    .hero p {
+      max-width: 470px;
+      margin: 0 auto 26px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .scroll-note {
+      display: block;
+      margin-top: 55px;
+      color: var(--rose);
+      font-size: 11px;
+      letter-spacing: 2px;
+    }
+
+    /* Intro note */
+
+    .note {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      padding: clamp(25px, 5vw, 48px);
+      max-width: 680px;
+      margin: auto;
+      box-shadow: 0 12px 35px #633c3c08;
+    }
+
+    .note h3 {
+      font-size: 29px;
+      line-height: 1.3;
+      margin: 12px 0 20px;
+    }
+
+    .note p { color: #766367; font-size: 14px; }
+
+    /* Timeline */
+
+    .timeline {
+      max-width: 650px;
+      margin: auto;
+      position: relative;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 24px 1fr;
+      gap: 18px;
+      margin-bottom: 28px;
+    }
+
+    .timeline-dot {
+      margin-top: 8px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--rose);
+      box-shadow: 0 0 0 5px var(--pink);
+    }
+
+    .timeline-card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      padding: 22px;
+      border-radius: 4px;
+    }
+
+    .timeline-card h3 {
+      margin: 6px 0;
+      font: 23px 'Playfair Display', Georgia, serif;
+    }
+
+    .timeline-card p {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* Secret letters */
+
+    .letter-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .letter-card {
+      border: 1px solid var(--line);
+      background: var(--paper);
+      padding: 25px 18px;
+      text-align: center;
+      cursor: pointer;
+      color: var(--ink);
+      min-height: 185px;
+      transition: transform .2s, box-shadow .2s;
+    }
+
+    .letter-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 28px #633c3c0c;
+    }
+
+    .envelope {
+      display: block;
+      font-size: 33px;
+      margin-bottom: 8px;
+    }
+
+    .letter-card h3 {
+      font: 20px 'Playfair Display', Georgia, serif;
+      margin: 8px 0;
+    }
+
+    .letter-card p {
+      font-size: 11px;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .letter-content {
+      display: none;
+      text-align: left;
+      background: #f9eeeb;
+      border: 1px solid var(--line);
+      padding: 22px;
+      margin-top: 12px;
+      font: 16px/1.9 'Playfair Display', Georgia, serif;
+      white-space: pre-line;
+    }
+
+    .letter-content.open { display: block; }
+
+    /* Distance */
+
+    .distance-card {
+      background: #f1e2df;
+      padding: clamp(28px, 6vw, 55px) 20px;
+      text-align: center;
+    }
+
+    .distance-line {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: clamp(15px, 5vw, 48px);
+      margin: 32px 0;
+    }
+
+    .place {
+      font: clamp(23px, 5vw, 38px) 'Playfair Display', Georgia, serif;
+    }
+
+    .connecting-hearts {
+      color: var(--rose);
+      letter-spacing: 4px;
+      font-size: 18px;
+    }
+
+    .distance-card p {
+      max-width: 480px;
+      margin: auto;
+      font-size: 14px;
+      color: #80686b;
+    }
+
+    /* Song */
+
+    .song-card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      padding: 36px 20px;
+      text-align: center;
+    }
+
+    .record {
+      display: grid;
+      place-items: center;
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 20px;
+      border-radius: 50%;
+      background: repeating-radial-gradient(
+        circle, #57333d 0 3px, #39252c 4px 7px
+      );
+      color: #f5dce0;
+      font-size: 28px;
+      box-shadow: 0 0 0 9px #f2e5df;
+    }
+
+    .song-card h3 {
+      font: 29px 'Playfair Display', Georgia, serif;
+      margin: 10px 0 0;
+    }
+
+    .song-card p {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 22px;
+    }
+
+    /* Final letter */
+
+    .final-section {
+      background: #f1e2df;
+      padding: 100px 22px;
+    }
+
+    .final-inner {
+      max-width: 650px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .final-inner h2 {
+      font-size: clamp(36px, 7vw, 57px);
+      line-height: 1.2;
+      margin: 15px 0 28px;
+    }
+
+    .final-letter {
+      display: none;
+      text-align: left;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      padding: clamp(24px, 6vw, 45px);
+      margin-top: 28px;
+      white-space: pre-line;
+      font: 17px/2 'Playfair Display', Georgia, serif;
+    }
+
+    .final-letter.open { display: block; }
+
+    /* Footer and small surprise */
+
+    footer {
+      padding: 32px 20px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .secret-heart {
+      display: inline-block;
+      margin-top: 7px;
+      padding: 4px 10px;
+      border: 0;
+      background: transparent;
+      color: var(--rose);
+      cursor: pointer;
+      font-size: 20px;
+    }
+
+    #secret-message {
+      display: none;
+      color: var(--red);
+      font: italic 16px 'Playfair Display', Georgia, serif;
+    }
+
+    #secret-message.open { display: block; }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 24px;
+      transform: translate(-50%, 20px);
+      opacity: 0;
+      pointer-events: none;
+      background: var(--red);
+      color: white;
+      padding: 12px 20px;
+      border-radius: 4px;
+      z-index: 30;
+      transition: .3s;
+      text-align: center;
+      width: max-content;
+      max-width: 90%;
+      font-size: 13px;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+
+    @keyframes arrive {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.13); }
+    }
+
+/* ✨ NEW: elegant scroll animations */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 900ms ease,
+    transform 900ms cubic-bezier(.2,.7,.2,1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.timeline-item:nth-child(2) .timeline-card {
+  transition-delay: 100ms;
+}
+
+.timeline-item:nth-child(3) .timeline-card {
+  transition-delay: 200ms;
+}
+
+.timeline-item:nth-child(4) .timeline-card {
+  transition-delay: 300ms;
+}
+
+.note,
+.timeline-card,
+.letter-card,
+.song-card,
+.distance-card {
+  box-shadow: 0 8px 30px rgba(100, 48, 60, 0.035);
+  transition:
+    box-shadow 350ms ease,
+    transform 350ms ease,
+    border-color 350ms ease;
+}
+
+.timeline-card:hover,
+.note:hover,
+.song-card:hover {
+  box-shadow: 0 18px 45px rgba(100, 48, 60, 0.09);
+}
+
+.timeline-dot {
+  animation: dot-glow 3s ease-in-out infinite;
+}
+
+@keyframes dot-glow {
+  0%, 100% {
+    box-shadow: 0 0 0 5px var(--pink);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(243, 216, 217, 0.55);
+  }
+}
+
+/* Floating hearts */
+
+.heart-particle {
+  position: fixed;
+  bottom: -35px;
+  z-index: 15;
+  pointer-events: none;
+  color: var(--rose);
+  opacity: 0;
+  animation: heart-float var(--float-time, 9s) linear forwards;
+}
+
+@keyframes heart-float {
+  0% {
+    opacity: 0;
+    transform: translateY(0) rotate(0deg) scale(.7);
+  }
+  15% {
+    opacity: .45;
+  }
+  80% {
+    opacity: .3;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-110vh) rotate(35deg) scale(1.2);
+  }
+}
+
+/* Live clocks and distance panel */
+
+.live-love-card {
+  max-width: 780px;
+  margin: 35px auto 0;
+  padding: clamp(24px, 5vw, 42px);
+  background: rgba(255, 253, 249, .86);
+  border: 1px solid var(--line);
+  box-shadow: 0 20px 60px rgba(100, 48, 60, .06);
+}
+
+.live-clock-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 28px 0;
+}
+
+.live-clock {
+  padding: 22px 12px;
+  background: #fffaf7;
+  border: 1px solid var(--line);
+  text-align: center;
+}
+
+.live-clock .clock-city {
+  color: var(--rose);
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.live-clock .clock-time {
+  display: block;
+  margin: 9px 0 2px;
+  font: clamp(25px, 5vw, 38px) 'Playfair Display', Georgia, serif;
+  font-variant-numeric: tabular-nums;
+}
+
+.live-clock .clock-date {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.time-difference {
+  padding: 13px;
+  background: #f6e9e6;
+  text-align: center;
+  color: var(--red);
+  font-size: 13px;
+}
+
+.distance-number {
+  margin: 12px 0 0;
+  font: clamp(34px, 7vw, 54px) 'Playfair Display', Georgia, serif;
+  color: var(--red);
+  font-variant-numeric: tabular-nums;
+}
+
+.distance-caption {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.distance-track {
+  height: 4px;
+  border-radius: 99px;
+  background: #ead5d5;
+  margin: 22px 0 12px;
+  overflow: hidden;
+}
+
+.distance-track span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #d99ba6, #813b4c);
+  transform-origin: left;
+  animation: track-arrive 1.5s ease both;
+}
+
+@keyframes track-arrive {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+/* Live time together */
+
+.together-counter {
+  margin-top: 28px;
+  padding: 24px 15px;
+  border-top: 1px solid var(--line);
+  text-align: center;
+}
+
+.counter-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.counter-unit {
+  padding: 15px 5px;
+  background: #fffaf7;
+  border: 1px solid var(--line);
+}
+
+.counter-unit strong {
+  display: block;
+  font: clamp(22px, 4vw, 34px) 'Playfair Display', Georgia, serif;
+  color: var(--red);
+  font-variant-numeric: tabular-nums;
+}
+
+.counter-unit span {
+  font-size: 9px;
+  color: var(--muted);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+@media (max-width: 600px) {
+  .live-clock-grid { gap: 8px; }
+  .live-clock { padding: 18px 5px; }
+  .counter-grid { gap: 5px; }
+  .counter-unit { padding: 12px 3px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .heart-particle { display: none; }
+
+  .timeline-dot { animation: none; }
+}
+
+    @media (max-width: 600px) {
+      nav { align-items: flex-start; }
+      .nav-links { gap: 9px 13px; }
+      .nav-links a { font-size: 10px; }
+      .brand { font-size: 18px; }
+      .section { padding: 72px 18px; }
+      .letter-grid { gap: 10px; }
+      .letter-card { padding: 20px 10px; min-height: 175px; }
+      .distance-line { gap: 12px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- WELCOME SCREEN -->
+  <div id="welcome">
+    <div class="welcome-card">
+      <div class="tiny-heart">♡</div>
+      <span class="eyebrow">A little something made for you</span>
+      <h1 class="serif">For Inny,<br><em>wherever you are.</em></h1>
+      <p>A little corner of the internet, made with love, just for you.</p>
+      <button class="button" id="enter-button">Come in, Inny ♡</button>
+      <div class="welcome-note">Take your time. There's no rush here.</div>
+    </div>
+  </div>
+
+  <!-- NAVIGATION -->
+  <nav>
+    <a class="brand" href="#home">for inny ♡</a>
+    <div class="nav-links">
+      <a href="#story">Our story</a>
+      <a href="#letters">Letters</a>
+      <a href="#distance">Us</a>
+      <a href="#live-connection">Live clocks</a>
+      <a href="#song">Our song</a>
+    </div>
+  </nav>
+
+  <main id="home">
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-inner">
+        <span class="eyebrow">Made just for you · With love</span>
+        <h2 class="serif">Some people make<br>the world feel a little<br><em>softer.</em></h2>
+        <p>
+          And sometimes, you want to make something that says
+          all the little things ordinary messages can't quite hold.
+        </p>
+        <a class="button" href="#little-note">A little note for you ↓</a>
+        <span class="scroll-note">A SMALL WORLD, JUST FOR YOU &nbsp; ♡</span>
+      </div>
+    </section>
+
+    <!-- PERSONAL NOTE -->
+    <section class="section" id="little-note">
+      <div class="note">
+        <span class="eyebrow">Before anything else</span>
+        <h3 class="serif">Hey, you. I'm really glad it's you.</h3>
+        <p>
+          I wanted to make you something that you could come back to
+          whenever you wanted. Something a little different from a text
+          on a screen. Something that could hold memories, silly little
+          things, words I sometimes struggle to say, and reminders of
+          just how much you mean to me.
+        </p>
+        <p>
+          So, I made you this little world. You don't have to explore
+          it all at once. Just know that every little corner was made
+          with you in mind. ♡
+        </p>
+        <p style="text-align:right;font-family:'Playfair Display',serif;font-style:italic">
+          — from me, to you
+        </p>
+      </div>
+    </section>
+
+    <!-- OUR STORY -->
+    <section class="section" id="story">
+      <div class="section-heading">
+        <span class="eyebrow">Chapter one</span>
+        <h2 class="serif">A little bit of our story</h2>
+        <p>
+          Not every meaningful story needs a grand beginning.
+          Sometimes the little moments are the ones that stay.
+        </p>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <span class="eyebrow">The beginning</span>
+            <h3>When you became someone special</h3>
+            <p>
+              I still remember our first conversation, the stupid, silly conversation we
+              had the day after we met about wingstop. I find it so silly because it was
+              the only conversation starter I had.
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <span class="eyebrow">The little things</span>
+            <h3>All the moments in between</h3>
+            <p>
+             Everything in between, all the inside jokes we have, unctie mishra, unc and my
+             favourite Lashra, just makes me think about how special u really are to me Inny.
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <span class="eyebrow">A moment to remember</span>
+            <h3>When we said how we felt</h3>
+            <p>
+              What a bloody moment this was, I still vividly remember the day, 17th of July, the 
+              day when me and you confessed, the whole buildup to it was amazing Inny, i just 
+              it was the best day of my life - 17/07/26.
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <span class="eyebrow">Still being written</span>
+            <h3>And this is only the beginning</h3>
+            <p>
+              There are still conversations to have, memories to make, there are so many 
+              things we have to do, so many ordinary days that will seem special Inny.
+             
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECRET LETTERS -->
+    <section class="section" id="letters">
+      <div class="section-heading">
+        <span class="eyebrow">Chapter two</span>
+        <h2 class="serif">Letters for little moments</h2>
+        <p>
+          Choose an envelope. Each one has a different little message
+          waiting inside. ♡
+        </p>
+      </div>
+
+      <div class="letter-grid">
+
+        <button class="letter-card" data-letter="sad" aria-expanded="false">
+          <span class="envelope">✉</span>
+          <h3>Open when you're sad</h3>
+          <p>A little reminder, whenever you need it</p>
+        </button>
+
+        <button class="letter-card" data-letter="miss" aria-expanded="false">
+          <span class="envelope">💌</span>
+          <h3>Open when you miss me</h3>
+          <p>A little closeness across the distance</p>
+        </button>
+
+        <button class="letter-card" data-letter="laugh" aria-expanded="false">
+          <span class="envelope">♡</span>
+          <h3>Open when you need a laugh</h3>
+          <p>For a day that needs a little silliness</p>
+        </button>
+
+        <button class="letter-card" data-letter="random" aria-expanded="false">
+          <span class="envelope">✧</span>
+          <h3>Open just because</h3>
+          <p>No special occasion needed</p>
+        </button>
+
+      </div>
+
+      <div class="letter-content" id="letter-content"
+           role="status" aria-live="polite"></div>
+    </section>
+
+    <!-- DISTANCE -->
+    <section class="section" id="distance">
+      <div class="distance-card">
+        <span class="eyebrow">Chapter three</span>
+        <h2 class="serif" style="font-size:clamp(32px,6vw,48px);margin:12px 0">
+          Different places.<br>Still a part of each other's days.
+        </h2>
+
+        <div class="distance-line">
+          <span class="place">UK</span>
+          <span class="connecting-hearts">♡ · · · ♡</span>
+          <span class="place">Australia</span>
+        </div>
+
+        <p>
+          The miles are real, and so are the little moments we share
+          across them. A message, a laugh, hearing about each other's
+          day — sometimes the smallest things make the biggest difference.
+        </p>
+        <p style="margin-top:18px;font-family:'Playfair Display',serif;font-style:italic">
+          One day at a time. One memory at a time.
+        </p>
+      </div>
+    </section>
+
+
+    <!-- LIVE UK / AUSTRALIA CONNECTION -->
+    <section class="section reveal" id="live-connection">
+      <div class="section-heading">
+        <span class="eyebrow">A little closer, wherever we are</span>
+        <h2 class="serif">Two places. One little world. ♡</h2>
+        <p>The clocks keep moving, the days keep passing, and somewhere in it all, we're both here.</p>
+      </div>
+      <div class="live-love-card">
+        <div class="center">
+          <span class="eyebrow">The distance between us</span>
+          <div class="distance-number" id="distance-number">16,904 km</div>
+          <div class="distance-caption">Approximate straight-line distance · London to Melbourne</div>
+          <div class="distance-track"><span></span></div>
+          <p class="distance-caption">A very long way on a map. Still room for all the little things.</p>
+        </div>
+        <div class="live-clock-grid">
+          <div class="live-clock">
+            <span class="clock-city">🇬🇧 United Kingdom</span>
+            <time class="clock-time" id="uk-time">--:--:--</time>
+            <div class="clock-date" id="uk-date">Loading local time…</div>
+          </div>
+          <div class="live-clock">
+            <span class="clock-city">🇦🇺 Melbourne, Australia</span>
+            <time class="clock-time" id="aus-time">--:--:--</time>
+            <div class="clock-date" id="aus-date">Loading local time…</div>
+          </div>
+        </div>
+        <div class="time-difference" id="time-difference" aria-live="polite">Calculating the time difference…</div>
+        <div class="together-counter">
+          <span class="eyebrow">Since 17 July 2026</span>
+          <h3 class="serif" style="font-size:25px;margin:10px 0">The day we said how we felt ♡</h3>
+          <p class="distance-caption">Every second since that very special day.</p>
+          <div class="counter-grid">
+            <div class="counter-unit"><strong id="count-days">000</strong><span>Days</span></div>
+            <div class="counter-unit"><strong id="count-hours">00</strong><span>Hours</span></div>
+            <div class="counter-unit"><strong id="count-minutes">00</strong><span>Minutes</span></div>
+            <div class="counter-unit"><strong id="count-seconds">00</strong><span>Seconds</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SONG -->
+    <section class="section" id="song">
+      <div class="section-heading">
+        <span class="eyebrow">Chapter four</span>
+        <h2 class="serif">A song that reminds me of us</h2>
+        <p>
+          Some songs end up holding little pieces of our memories.
+        </p>
+      </div>
+
+      <div class="song-card">
+        <div class="record">♡</div>
+        <span class="eyebrow">Our little soundtrack</span>
+        <h3>Babydoll</h3>
+        <p>Dominic Fike</p>
+        <a class="button button-outline"
+           href="https://open.spotify.com/search/Babydoll%20Dominic%20Fike"
+           target="_blank" rel="noopener noreferrer">
+          Find our song ♫
+        </a>
+        <p style="max-width:400px;margin:22px auto 0">
+          Add your own note here about why this song matters to you,
+          or the memory you associate with it.
+        </p>
+      </div>
+    </section>
+
+    <!-- FINAL LETTER -->
+    <section class="final-section" id="last-letter">
+      <div class="final-inner">
+        <span class="eyebrow">One last little thing</span>
+        <h2 class="serif">Before you go,<br>there's one more letter.</h2>
+        <p style="color:#80686b;font-size:14px">
+          No rush. Open it whenever you're ready.
+        </p>
+        <button class="button" id="final-button" aria-expanded="false">
+          Open your last letter ♡
+        </button>
+
+        <div class="final-letter" id="final-letter" aria-live="polite">
+Hey, Inny ♡
+
+If you've made it all the way here, thank you for exploring this little world I made for you.
+
+I know a website can't hold every conversation, every memory, every laugh, or every little thing that makes you you. But I wanted to try to make something that reminds you how much the little things matter to me.
+
+I hope you always feel that you can be yourself around me. I hope we keep learning about each other, sharing our days, laughing at the most ridiculous things, and making memories we can look back on.
+
+You don't have to do anything special to deserve kindness or care. You don't have to be having your best day, or have the perfect words, or be anything other than yourself.
+
+Thank you for being a part of my life.
+
+And if there's one thing I hope you take away from this little corner of the internet, it's this:
+
+I'm really glad I got to know you.
+
+With love,
+me ♡
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- A SMALL HIDDEN SURPRISE -->
+  <footer>
+    Made with care, one little line of code at a time.
+    <br>
+    <button class="secret-heart" id="secret-heart"
+            aria-label="Reveal a hidden message">♡</button>
+    <p id="secret-message" aria-live="polite">
+      Psst... if you're reading this, you're pretty good at exploring. ♡
+    </p>
+    <p>For Inny, wherever you are.</p>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    // The welcome screen
+    const welcome = document.getElementById('welcome');
+
+    document.getElementById('enter-button').addEventListener('click', () => {
+      welcome.classList.add('hidden');
+      document.body.style.overflow = '';
+      document.getElementById('home').scrollIntoView();
+    });
+
+    // Letters: click an envelope to reveal its message
+    const letters = {
+      sad: `Hey you. ♡
+
+I'm sorry today feels a little heavy.
+
+You don't have to pretend to be okay all the time. You can take a breath, give yourself a moment, and take things one step at a time.
+
+I hope you remember that one difficult day doesn't define you, and you don't have to earn the kindness you deserve.
+
+If you want to talk, I'm here to listen. And if you just need a little quiet, that's okay too.
+
+Be gentle with yourself, yeah? ♡`,
+
+      miss: `Hey, you. ♡
+
+I know being in different places isn't always easy.
+
+I wish we could share more of the ordinary little moments, but until then, I'm glad we can still share parts of our days, even from far away.
+
+Maybe we're looking at different skies right now, but we can still tell each other about them.
+
+Until the next conversation, the next laugh, and the next memory — sending you a little bit of warmth from over here. ♡`,
+
+      laugh: `IMPORTANT ANNOUNCEMENT:
+
+You have been personally selected for absolutely no reason other than being you.
+
+Your official duties include:
+- Existing.
+- Being your wonderfully weird self.
+- Laughing at things that probably aren't even that funny.
+- Remembering to drink some water.
+
+Your salary is one imaginary cookie and unlimited bragging rights.
+
+Congratulations. You cannot resign. ♡`,
+
+      random: `No special occasion. No big speech. Just this:
+
+I appreciate the little things about you.
+
+The conversations, the jokes, the things you remember, the things you get excited about, and the way there's always something new to learn about another person.
+
+I hope something good happens for you today, however small.
+
+And if today is an ordinary day, I hope there's still something in it that makes you smile.
+
+That's all. Just wanted you to know. ♡`
+    };
+
+    const letterContent = document.getElementById('letter-content');
+
+    document.querySelectorAll('[data-letter]').forEach(button => {
+      button.addEventListener('click', () => {
+        const id = button.dataset.letter;
+        const wasOpen = button.getAttribute('aria-expanded') === 'true';
+
+        document.querySelectorAll('[data-letter]').forEach(other => {
+          other.setAttribute('aria-expanded', 'false');
+        });
+
+        if (wasOpen) {
+          letterContent.classList.remove('open');
+          letterContent.textContent = '';
+          return;
+        }
+
+        button.setAttribute('aria-expanded', 'true');
+        letterContent.textContent = letters[id];
+        letterContent.classList.add('open');
+        letterContent.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      });
+    });
+
+    // The final letter
+    const finalButton = document.getElementById('final-button');
+    const finalLetter = document.getElementById('final-letter');
+
+    finalButton.addEventListener('click', () => {
+      const open = finalLetter.classList.toggle('open');
+      finalButton.setAttribute('aria-expanded', String(open));
+      finalButton.textContent = open
+        ? 'Close your letter ↑'
+        : 'Open your last letter ♡';
+
+      if (open) {
+        finalLetter.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    });
+
+    // The hidden heart
+    document.getElementById('secret-heart').addEventListener('click', () => {
+      document.getElementById('secret-message').classList.toggle('open');
+    });
+
+
+    // Added polish: reveal sections as they enter view.
+    if ('IntersectionObserver' in window) {
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      document.querySelectorAll('.section, .timeline-item, .note, .song-card, .final-inner').forEach(element => {
+        element.classList.add('reveal');
+        revealObserver.observe(element);
+      });
+    } else {
+      document.querySelectorAll('.reveal').forEach(element => element.classList.add('visible'));
+    }
+
+    // Live clocks use IANA time zones, so daylight-saving changes are handled automatically.
+    const ukZone = 'Europe/London';
+    const australiaZone = 'Australia/Melbourne';
+
+    function offsetMinutes(timeZone, date) {
+      const parts = new Intl.DateTimeFormat('en-GB', { timeZone, timeZoneName: 'longOffset' }).formatToParts(date);
+      const offset = parts.find(part => part.type === 'timeZoneName')?.value || 'GMT';
+      if (offset === 'GMT' || offset === 'UTC') return 0;
+      const match = offset.match(/GMT([+-])(\d{2}):(\d{2})/);
+      if (!match) return 0;
+      const mins = Number(match[2]) * 60 + Number(match[3]);
+      return match[1] === '+' ? mins : -mins;
+    }
+
+    function updateLiveDetails() {
+      const now = new Date();
+      const timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit', hourCycle: 'h23' };
+      document.getElementById('uk-time').textContent = new Intl.DateTimeFormat('en-GB', { timeZone: ukZone, ...timeOptions }).format(now);
+      document.getElementById('aus-time').textContent = new Intl.DateTimeFormat('en-GB', { timeZone: australiaZone, ...timeOptions }).format(now);
+      document.getElementById('uk-date').textContent = new Intl.DateTimeFormat('en-GB', { timeZone: ukZone, weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' }).format(now);
+      document.getElementById('aus-date').textContent = new Intl.DateTimeFormat('en-GB', { timeZone: australiaZone, weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' }).format(now);
+      const difference = offsetMinutes(australiaZone, now) - offsetMinutes(ukZone, now);
+      const hours = Math.floor(Math.abs(difference) / 60);
+      const minutes = Math.abs(difference) % 60;
+      const direction = difference >= 0 ? 'ahead of' : 'behind';
+      document.getElementById('time-difference').textContent = `Melbourne is ${hours}h${minutes ? ` ${minutes}m` : ''} ${direction} the UK right now.`;
+
+      // Midnight at the start of 17 July 2026 in the UK (BST, UTC+1).
+      const confessionDate = new Date('2026-07-17T00:00:00+01:00');
+      let elapsed = Math.max(0, Math.floor((now - confessionDate) / 1000));
+      const days = Math.floor(elapsed / 86400); elapsed %= 86400;
+      const hoursElapsed = Math.floor(elapsed / 3600); elapsed %= 3600;
+      const minutesElapsed = Math.floor(elapsed / 60);
+      const secondsElapsed = elapsed % 60;
+      document.getElementById('count-days').textContent = String(days).padStart(3, '0');
+      document.getElementById('count-hours').textContent = String(hoursElapsed).padStart(2, '0');
+      document.getElementById('count-minutes').textContent = String(minutesElapsed).padStart(2, '0');
+      document.getElementById('count-seconds').textContent = String(secondsElapsed).padStart(2, '0');
+    }
+    updateLiveDetails();
+    setInterval(updateLiveDetails, 1000);
+
+    // Gentle floating hearts, with a cap so the page stays smooth.
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!reducedMotion) {
+      setInterval(() => {
+        if (document.hidden || document.querySelectorAll('.heart-particle').length > 5) return;
+        const heart = document.createElement('span');
+        heart.className = 'heart-particle';
+        heart.textContent = ['♡', '♥', '✧'][Math.floor(Math.random() * 3)];
+        heart.style.left = `${5 + Math.random() * 90}%`;
+        heart.style.fontSize = `${12 + Math.random() * 14}px`;
+        heart.style.setProperty('--float-time', `${7 + Math.random() * 5}s`);
+        document.body.appendChild(heart);
+        heart.addEventListener('animationend', () => heart.remove());
+      }, 1800);
+    }
+
+  </script>
+
+</body>
+</html>
